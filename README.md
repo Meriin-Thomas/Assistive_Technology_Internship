@@ -1,2 +1,2 @@
 # AT-Internship
-Things I learnt during my Assitive Technology Internship 
+A log of the things I did during my assitive technology internship at the National Institute of Speech and Hearing (NISH)
