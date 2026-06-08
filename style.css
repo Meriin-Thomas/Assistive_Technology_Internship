@@ -1,0 +1,334 @@
+*{
+
+    cursor: url("./images/muscle3.png"), crosshair;
+}
+
+body{
+
+    font-family: 'Poppins', sans-serif;
+
+    margin: 0;
+
+    background: #111827;
+
+    color: #222;
+
+    overflow-x: hidden;
+
+}
+
+
+
+/* ---------- VIDEO OVERLAY ---------- */
+
+body::before{
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(17,24,39,0.78);
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+#bg-video{
+
+    position: fixed;
+
+    top: 70%;
+
+    left: 51%;
+
+    min-width: 100%;
+
+    min-height: 100%;
+
+    width: auto;
+
+    height: auto;
+
+    transform: translate(-50%, -50%);
+
+    object-fit: cover;
+
+    opacity: 1.0;
+
+    z-index: -2;
+}
+
+
+
+/* ---------- HEADER ---------- */
+
+header{
+
+    background: #00b3bc;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 70px 30px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+header h1{
+
+    margin: 0;
+
+    font-size: 3.2rem;
+
+    font-weight: 700;
+}
+
+header p{
+
+    margin-top: 12px;
+
+    margin-bottom: 0;
+
+    font-size: 1.35rem;
+
+    font-weight: 400;
+}
+
+
+
+/* ---------- CONTENT SECTIONS ---------- */
+
+section{
+
+    background: white;
+
+    margin: 25px auto;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    width: 90%;
+
+    max-width: 1200px;
+
+    font-size: 1.1rem;
+
+    line-height: 1.7;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+section h2{
+
+    font-size: 2rem;
+
+    margin-top: 0;
+}
+
+section h3{
+
+    font-size: 1.3rem;
+}
+
+
+
+/* ---------- DAILY LOG CARDS ---------- */
+
+/* ---------- EXPANDABLE LOGS ---------- */
+
+.log-card{
+
+    background: white;
+
+    border-left: 8px solid #00b3bc;
+
+    margin: 25px 0;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+    transition: 0.25s ease;
+}
+
+.log-card:hover{
+
+    box-shadow:
+        0 0 0 4px rgba(0,179,188,0.40),
+        0 8px 24px rgba(0,242,255,0.30);
+}
+
+
+.log-card summary{
+
+    padding: 22px;
+
+    cursor: pointer;
+
+    list-style: none;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    font-size: 1.25rem;
+
+    font-weight: 600;
+}
+
+.log-card summary::-webkit-details-marker{
+
+    display:none;
+}
+
+
+.day-pill{
+
+    background: #00b3bc;
+
+    color: white;
+
+    padding: 6px 14px;
+
+    border-radius: 20px;
+
+    font-size: 0.9rem;
+
+    font-weight: 600;
+}
+
+
+.log-content{
+
+    padding: 0 25px 25px 25px;
+
+    text-align: justify;
+}
+
+
+.log-content p{
+
+    margin-top: 10px;
+}
+
+
+.date{
+
+    color: gray;
+
+    font-size: 0.95rem;
+
+    margin-top: 0;
+}
+
+
+/* ---------- DAY TAGS / DATES ---------- */
+
+.day-tag{
+
+    display: inline-block;
+
+    background: #00b3bc;
+
+    color: white;
+
+    padding: 6px 14px;
+
+    border-radius: 20px;
+
+    font-size: 0.9rem;
+
+    font-weight: 600;
+}
+
+.date{
+
+    color: gray;
+
+    font-size: 0.95rem;
+
+    margin-top: 0;
+}
+
+
+
+/* ---------- FOOTER ---------- */
+
+footer{
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    color: white;
+
+    font-size: 1.50rem;
+
+    opacity: 2.0;
+}
+
+.attribution{
+
+    font-size: 1.00rem;
+
+    opacity: 1.0;
+}
+
+.attribution a{
+
+    color: #00f2ff;
+
+    text-decoration: none;
+
+    display: inline-block;
+
+    transition: 0.2s ease;
+
+    user-select: none;
+}
+
+.attribution a:hover{
+
+    transform: scale(1.05);
+
+    text-shadow:
+        0 0 8px rgba(0,179,188,0.5),
+        0 0 16px rgba(0,179,188,0.35),
+        0 0 24px rgba(0,179,188,0.25);
+}
+
+#end-message{
+
+    cursor: pointer;
+
+    user-select: none;
+
+    display: inline-block;
+
+    transition: 0.2s ease;
+}
+
+#end-message:hover{
+
+    transform: scale(1.05);
+
+    text-shadow:
+        0 0 8px rgba(0,179,188,0.5),
+        0 0 16px rgba(0,179,188,0.35),
+        0 0 24px rgba(0,179,188,0.25);
+}
