@@ -1403,7 +1403,7 @@
 
     </section>
 
-    <p class="phone-secret" style="display:none;">
+    <p class="phone-secret">
 
         Hi!<br>
         You're using your phone to see this page?<br>
@@ -1450,8 +1450,13 @@
 
     <script>
 
-    if (window.matchMedia("(pointer: coarse)").matches) {
-        document.querySelector(".phone-secret").style.display = "block";
+    const phoneSecret = document.querySelector(".phone-secret");
+
+    if (
+        phoneSecret &&
+        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+    ) {
+        phoneSecret.style.display = "block";
     }
 
     document.addEventListener("click", (e) => {
@@ -1482,16 +1487,18 @@
     });
 
     const endText = document.getElementById("end-message");
-
     const sound = document.getElementById("footer-sound");
 
-    endText.addEventListener("click", () => {
+    if (endText && sound) {
 
-        sound.currentTime = 0;
+        endText.addEventListener("click", () => {
 
-        sound.play();
+            sound.currentTime = 0;
+            sound.play();
 
-    });
+        });
+
+    }
 
     </script>
 
