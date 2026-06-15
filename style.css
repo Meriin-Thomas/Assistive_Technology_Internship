@@ -319,22 +319,14 @@ section h3{
 .phone-secret{
 
     display: none;
-}
 
-@media (max-width: 768px){
+    text-align: center;
 
-    .phone-secret{
+    margin: 20px;
 
-        display: block;
+    color: #00f2ff;
 
-        text-align: center;
-
-        margin: 20px;
-
-        color: #00f2ff;
-
-        font-style: italic;
-    }
+    font-style: italic;
 }
 
 /* ---------- FOOTER ---------- */

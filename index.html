@@ -1403,7 +1403,7 @@
 
     </section>
 
-    <p class="phone-secret">
+    <p class="phone-secret" style="display:none;">
 
         Hi!<br>
         You're using your phone to see this page?<br>
@@ -1449,6 +1449,10 @@
     </audio>
 
     <script>
+
+    if (window.matchMedia("(pointer: coarse)").matches) {
+        document.querySelector(".phone-secret").style.display = "block";
+    }
 
     document.addEventListener("click", (e) => {
 
