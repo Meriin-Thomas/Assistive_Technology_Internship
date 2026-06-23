@@ -17,7 +17,155 @@ body{
 
 }
 
+.thumbs {
+    display: inline-flex;
+    gap: 6px;
+    margin-left: 10px;
+}
 
+.thumbs img {
+
+    width: 40px;
+    height: 40px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    border: 2px solid #00b3bc;
+
+    transition: all 0.25s ease;
+
+}
+
+.thumbs img:hover {
+
+    transform: scale(1.1);
+
+    box-shadow:
+        0 0 8px rgba(0,179,188,0.6),
+        0 0 16px rgba(0,179,188,0.3);
+
+}
+
+/* ---------- LIGHTBOX ---------- */
+
+.lightbox {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.90);
+
+    z-index: 9999;
+
+    isolation: isolate;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-direction: column;
+}
+
+/* Glowing particle field */
+
+.lightbox::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    opacity: 0.4;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(0,179,188,0.9) 1px,
+            transparent 1px
+        );
+
+    background-size: 3px 3px;
+
+    filter: blur(0.5px);
+}
+
+/* Full image */
+
+.lightbox img {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 90%;
+
+    max-height: 80vh;
+
+    border-radius: 12px;
+
+    border: 2px solid #00b3bc;
+
+    box-shadow:
+        0 0 15px rgba(0,179,188,0.5),
+        0 0 30px rgba(0,179,188,0.25);
+}
+
+/* Caption */
+
+.lightbox p {
+
+    position: relative;
+
+    z-index: 2;
+
+    color: white;
+
+    margin-top: 10px;
+
+    text-align: center;
+}
+
+/* Close button */
+
+.close-lightbox {
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 30px;
+
+    z-index: 2;
+
+    color: white;
+
+    font-size: 40px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.close-lightbox:hover {
+
+    color: #00b3bc;
+
+    text-shadow:
+        0 0 10px #00b3bc,
+        0 0 20px #00b3bc;
+}
 
 /* ---------- VIDEO OVERLAY ---------- */
 

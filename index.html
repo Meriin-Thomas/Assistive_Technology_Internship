@@ -112,7 +112,19 @@
 
                 </summary>
 
+ <!--              <div class="thumbs">
 
+                    <img src="images/Website/IMG20260616124958.jpg"
+                        alt="NISH campus tour"
+                        onclick="openImage(this)"/>
+
+                    <img src="images/Website/Character_20260619151132.png"
+                        alt="Accessibility features"
+                        onclick="openImage(this)"
+
+                </div>
+
+--> 
                 <div class="log-content">
 
                     <p class="date">
@@ -450,6 +462,16 @@
                     <ul>
 
                         <li>Approximately 4% FRAM usage</li>
+
+                    </ul>
+
+                    <p>
+                        Resource usage for the Out-of-Box Demo from yesterday:
+                    </p>
+
+                    <ul>
+
+                        <li>Approximately 38% FRAM usage</li>
 
                     </ul>
 
@@ -1398,6 +1420,351 @@
 
         </details>
 
+        <details class="week-card"> <!-- Week 4 -->
+
+            <summary>
+
+                Week 4
+
+            </summary>
+
+            <details class="log-card"> <!-- Day 14 -->
+
+                <summary>
+
+                    <span class="day-pill">
+
+                        Day 14
+
+                    </span>
+
+                    Hardware Delays, Software Progress
+
+                </summary>
+
+
+                <div class="log-content">
+
+                    <p class="date">
+
+                        June 15, 2026
+
+                    </p>
+
+
+                    <h4>Research, Debugging & Code Improvements</h4>
+
+                    <p>
+                    Since we were sharing the development board, I did not get a chance to use it today. 
+                    Neha continued working on interfacing the MSP430 with the WaveShare display, which seems to be more challenging than expected.
+                    Watching the progress made me curious about the process, and I hope to get to try using the WaveShare myself one day.
+                    </p>
+
+                    <p>
+                    In the meantime, I spent time researching topics related to our previous work and improving parts of the code that had been bothering me. 
+                    One area of focus was the MSP430 port selection registers. While reviewing online examples, I noticed that many used both <code>PxSEL0</code> and <code>PxSEL1</code> registers. 
+                    Further investigation revealed that the MSP430FR4133 only provides <code>PxSEL0</code>, allowing two selectable functions per pin, whereas other MSP430 variants use both registers to support additional peripheral functions. 
+                    Understanding this difference helped explain why some examples were incompatible with our microcontroller.
+                    </p>
+
+                    <p>
+                    I also revisited the sEMG signal processing calculations to better understand variations in the measured values. 
+                    Factors such as amplifier gain, output modes (RAW, RECTIFIED, and ENVELOPE), and ADC conversion methods were examined to identify possible sources of error. 
+                    Based on this investigation, using the ADC values directly may provide more reliable results.
+                    </p>
+
+                    <p>
+                    Although I did not get to work with the hardware today, I learned a lot through research and troubleshooting. 
+                    I also spent some time making improvements to this internship website! Exploring HTML, CSS, and JavaScript has been surprisingly fun, 
+                    and it is exciting to see the website gradually become more interactive and polished.
+                    </p>
+
+                </div>
+
+            </details>
+
+            <details class="log-card"><!-- Day 15 -->
+
+                <summary>
+
+                    <span class="day-pill">
+
+                        Day 15
+
+                    </span>
+
+                    Troubleshooting the WaveShare
+
+                </summary>
+
+
+                <div class="log-content">
+
+                    <p class="date">
+
+                        June 16, 2026
+
+                    </p>
+
+                    <h4>Hardware Scares and Recovery</h4>
+
+                    <p>
+                    During testing, the dedicated UART port on the WaveShare board unexpectedly stopped functioning and produced a "Set Address Failed (Code 43)" error. Since our previous work with the WaveShare had relied on this port, the issue initially raised concerns that the board might have been damaged.
+                    </p>
+
+                    <p>
+                    After researching the problem, we decided to try programming the board through its native USB-C port instead of the UART interface. This required enabling USB CDC on Boot in the Arduino IDE and configuring the board as usual by selecting the ESP32S3 Dev Module, setting the flash size to 16 MB, and enabling 8 MB PSRAM. Once the change was made, the board was successfully detected and programmed through the USB port.
+                    </p>
+
+                    <p>
+                    To verify that the ESP32-S3 itself was still functioning correctly, we printed text to the Serial Monitor, and when that suceeded, we uploaded one of the official WaveShare example programs. The LCD responded as expected, confirming that the main processor and display hardware were operational. It was reassuring to discover that the board was not completely unusable and that development could continue despite the UART issue.
+                    </p>
+
+                    <p>
+                    We also investigated possible causes of the UART failure. We suspect damage to the USB-to-UART bridge chip, the CH343P. The fact that the native USB interface works suggests that the ESP32-S3 is still healthy and that the problem may be isolated to the UART circuitry.
+                    </p>
+
+                    <p>
+                    While the issue was frustrating, the experience provided valuable insight into the different programming interfaces available on the board and highlighted the importance of troubleshooting hardware methodically rather than assuming the worst when something stops working.
+                    </p>
+
+
+                </div>
+
+            </details>    
+
+            <details class="log-card"><!-- Day 16 -->
+
+                <summary>
+
+                    <span class="day-pill">
+
+                        Day 16
+
+                    </span>
+
+                    WaveShare Exploration and SD Card Troubleshooting
+                </summary>
+
+
+                <div class="log-content">
+
+                    <p class="date">
+
+                        June 17, 2026
+
+                    </p>
+
+
+                    <h4>Exploring the WaveShare</h4>
+
+
+                    <p>
+                    Today was my turn to work with the WaveShare ESP32-S3 Touch LCD board. After the recent UART issues, I wanted to thoroughly test the board and confirm that all of its major features were functioning correctly. Using the official WaveShare documentation and example programs, I explored various peripherals and interfaces available on the board.
+                    </p>
+
+                    <p>
+                    I successfully tested the LCD display, touchscreen, I²C communication, and sensor ADC examples. Although I did not have the hardware required to experiment with RS-485 or CAN communication, I spent some time reading about how these protocols are used in industrial and embedded systems.
+                    </p>
+
+                    <p>
+                    While working through the examples, I learned about several new concepts including PSRAM, OPI (Octal Peripheral Interface), RGB display interfaces, and the different memory resources available on the ESP32-S3. I found it very cool that the commonly used RGB565 colour format allocates 5 bits for red, 6 bits for green, and 5 bits for blue. Since the human eye is most sensitive to green wavelengths, the extra bit improves colour representation while maintaining efficient memory usage.
+                    </p>
+
+                    <p>
+                    One of my favourite experiments was creating a simple drawing application using the touchscreen. The program displayed a point wherever the screen was touched and connected successive points with lines. Although the result was fairly basic and produced more straight segments than smooth curves, it was exciting to see the touchscreen working interactively. 
+                    With enough time and development, it can evolve into a much more capable application. Maybe one day I can make my own Ibis Paint!
+                    </p>
+
+                    <p>
+                    Throughout the day, I also encountered and resolved several troubleshooting issues. At one point, code uploads unexpectedly stopped working despite the board being detected correctly. The issue turned out to be caused by the Serial Monitor still being open. Later, the USB communication port disappeared entirely. After investigating, I learned that the ESP32-S3's native USB interface is handled directly by the microcontroller, meaning that crashes or invalid program states can cause the USB connection itself to disappear. Holding the BOOT button while reconnecting the board successfully restored the connection and allowed programming to continue.
+                    </p>
+
+
+                    <h4>Improving SD Card Data Logging</h4>
+
+                    <p>
+                    Alongside the WaveShare experiments, work continued on improving the SD card data logging system. Anupama Chechi was modifying the logging code to reduce storage waste. In my earlier implementation, each ADC reading was written to an entire 512-byte sector, leaving most of the sector unused. While this simplified data retrieval, it was highly inefficient in terms of storage utilisation.
+                    </p>
+
+                    <p>
+                    The updated approach allows data to be written more efficiently by using partial sector writes and flushing data as required. The code can also detect the SD card type and automatically adjust its addressing method depending on whether the card uses sector-based or byte-based addressing.
+                    </p>
+
+                    <p>
+                    During testing, I noticed that the SD card was being reformatted repeatedly even though it had already been formatted as FAT32. Some of the test programs were creating new file systems during execution, which risked overwriting existing data. This became apparent when the card unexpectedly reported that it was nearly full despite containing very little user data. After discussing the issue with the team, we agreed that unnecessary formatting should be avoided to prevent accidental data loss.
+                    </p>
+
+                    <p>
+                    An interesting breakthrough occurred when we successfully wrote raw data directly into sectors belonging to an existing text file whose starting location was already known. This demonstrated that data could potentially be logged directly into files while still taking advantage of low-level sector access techniques.
+                    </p>
+
+                    <p>
+                    I also carried out some experiments with large text files to better understand storage and software limitations. During testing, Microsoft Notepad struggled to open files larger than a few tens of megabytes and was unable to reliably handle some of the larger files I created. This is largely because traditional text editors such as Notepad attempt to load the entire file into memory at once, making them inefficient for very large datasets.
+                    </p>
+
+                    <p>
+                    In contrast, Visual Studio Code was able to open files approaching 1 GB in size with much less difficulty. Modern editors often use more efficient techniques such as incremental loading, virtualization, and optimized memory management, allowing them to work with significantly larger files. I also learned that there are specialized tools designed specifically for viewing massive text files, such as Large Text File Viewer (LTF Viewer), EmEditor, and LogExpert, which can handle files several gigabytes in size without loading the entire contents into memory.
+                    </p>
+
+                    <p>
+                    These experiments provided useful insight into how future sensor datasets could be stored, viewed, and analyzed. As logging durations increase and data volumes grow, selecting appropriate software tools becomes just as important as designing efficient storage methods on the embedded system itself.
+                    </p>
+
+                </div>
+
+            </details>
+
+            <details class="log-card"><!-- Day 17 -->
+
+                <summary>
+
+                    <span class="day-pill">
+
+                        Day 17
+
+                    </span>
+
+                    Finalising the Data Logging Process & Game Development
+
+                </summary>
+
+
+                <div class="log-content">
+
+                    <p class="date">
+
+                        June 18, 2026
+
+                    </p>
+
+
+                    <h4>Logging Tests</h4>
+
+                    <p>
+                    Before leaving the previous day, I had attempted to combine the older potentiometer data acquisition code with the newer SD card logging system. 
+                    Unexpectedly, the program stopped working suddenly, despite starting well and actually writing data.
+                    To investigate the issue, I revisited the code today. But today, the logging code worked correctly and was able to record data to the SD card without any issues at all. 
+                    I then adapted the same approach for use with the MyoWare sEMG sensor. 
+                    </p>
+                    Resource usage for Revised MyoWare Data Logging Code:
+                    </p>                
+
+                    <ul>
+
+                        <li>Approximately 30% FRAM usage </li>
+                        <li>Approximately 59% RAM usage </li>
+
+                    </ul>
+
+                    <h4>MyoWare-ESP Tests</h4>
+
+                    <p>
+                    I was curious about my old Myoware code for the ESP32-S3. I assumed the logic for it worked better for finding sEMG in mV than our current code since it used to show values in a more believable range.
+                    Initially, the Serial Plotter displayed unusual readings that did not resemble the expected muscle activity signals. After some troubleshooting, I discovered that the issue was related to the previous WaveShare configuration settings rather than the sensor itself. Once the settings were corrected for my devkit board, the sensor output appeared as expected.
+                    </p>
+
+                    <p>
+                    At one point, serial communication unexpectedly stopped functioning even though the COM port remained visible. Further investigation revealed that the board had previously undergone a complete flash erase, leaving it without valid firmware to execute. By forcing the ESP32-S3 into bootloader mode using the BOOT button, the board was successfully recovered and reprogrammed. This provided a useful opportunity to better understand the ESP32-S3 boot process and recovery mechanisms.
+                    </p>
+
+
+                    <h4>Beginning the sEMG Game Project</h4>
+
+                    <p>
+                    Later in the day, we were introduced to a new project: the development of an sEMG-based exercise game. The objective of the game is to make therapeutic exercises more engaging by rewarding users for performing muscle contractions. Instead of exercising solely for rehabilitation purposes, users would be able to see their efforts directly reflected through gameplay, making the exercises more enjoyable and motivating.
+                    </p>
+
+                    <p>
+                    To facilitate development, the team was divided into two groups. One group focused on sEMG signal acquisition and processing, while the other concentrated on game development, user interface design, and gameplay mechanics. At the same time, the feasibility of creating a more advanced 3D game using ROS and Gazebo was explored. Preliminary ideas included using muscle contractions to control actions within a virtual environment, such as hitting a cricket ball. However, challenges related to ROS configuration, WSL compatibility, and hardware integration meant that further investigation would be required before pursuing this approach.
+                    </p>
+
+                    <p>
+                    In parallel, development began on a simpler 2D prototype using Python and Pygame. The concept involves collecting mangoes to bake a birthday pie for the player's mother. Mangoes appear at different heights on the screen, requiring different jump heights to collect them. The current implementation uses button presses to control the character, but these inputs will eventually be replaced with sEMG-based muscle activation thresholds.
+                    </p>
+
+                    <p>
+                    While Shreyas worked on implementing the game mechanics in Pygame, I focused on creating visual assets for the project. Using ibisPaint X, I began designing the game's artwork and completed the initial background illustration. Meanwhile, Anupama Chechi and Neha continued researching methods for creating a more advanced 3D version of the crciket game concept using ROS and Gazebo. It was exciting to begin a project that combined embedded systems, signal processing, programming, and digital art into a single application.
+                    </p>
+
+
+                </div>
+
+            </details>    
+
+            <details class="log-card"><!-- Day 18 -->
+
+                <summary>
+
+                    <span class="day-pill">
+
+                        Day 18
+
+                    </span>
+
+                    Bringing the Game to Life
+
+                </summary>
+
+
+                <div class="log-content">
+
+                    <p class="date">
+
+                        June 19, 2026
+
+                    </p>
+
+
+                    <h4>Creating and Integrating Game Assets</h4>
+
+
+                    <p>
+                    Today was dedicated to developing the visual assets for our sEMG-based game. Using ibisPaint X, I created the remaining artwork required for the second playable version of the project. This included replacing the rough images I gave Shreyas with final ones, consisting of: a mango, character sprites, and a completion screen that would be displayed when the player successfully finishes the game.
+                    </p>
+
+                    <p>
+                    The mangoes serve as the primary collectibles in the game, with ten appearing across two rows at different heights. I also designed the main character and created separate sprites for different actions. One sprite is used during normal movement and can be flipped depending on the direction of travel, while another is displayed when the character jumps to collect mangoes. Finally, I created a completion illustration showing the character smiling while holding the finished pie, reinforcing the game's story and providing a rewarding ending for the player.
+                    </p>
+
+                    <p>
+                    An interesting aspect of the design process was seeing how different people perceived the artwork. One of the character design iterations that I considered cute was described as slightly creepy by Shreyas. It was a reminder that visual design is often subjective, and different people can have very different reactions to the same artwork.
+                    </p>
+
+                    <p>
+                    Once the artwork was completed, Shreyas integrated the assets into the Pygame project and added sound effects for jumping, collecting mangoes, and game completion. Seeing the illustrations transition from static drawings into an interactive game was very satisfying. The game also includes credits acknowledging the contributors involved in its development.
+                    </p>
+
+                    <p>
+                    At present, the character's movement is controlled using keyboard inputs. Pressing the W key produces a smaller jump, while the Up Arrow triggers a much higher jump. These controls serve as placeholders and will eventually be replaced with sEMG-based ADC thresholds, allowing muscle contractions to control the character directly.
+                    </p>
+
+                    <p>
+                    Creating the artwork proved to be a time-consuming but rewarding process. The estimated time spent on each asset was:
+                    </p>
+
+                    <ul>
+
+                        <li>Background artwork – approximately 2 hours</li>
+
+                        <li>Mango collectible design – approximately 1 hour</li>
+
+                        <li>Character sprite design and refinement – approximately 3 hours</li>
+
+                        <li>Final scene illustration – approximately 4 hours</li>
+
+                    </ul>
+
+                    <p>
+                    Although creating game assets demanded significant effort, it was exciting to see the project gradually evolve from a concept into a functional and visually appealing game.
+                    </p>
+
+
+                </div>
+
+            </details>
+
+        </details>
 
         <!-- ADD NEW DAYS BELOW -->
 
@@ -1450,6 +1817,34 @@
 
     <script>
 
+    function openImage(img) {
+
+        document.getElementById("lightbox").style.display = "flex";
+
+        document.getElementById("lightbox-img").src = img.src;
+
+        document.getElementById("lightbox-caption").textContent =
+            img.alt;
+    }
+
+    document.querySelector(".close-lightbox").addEventListener(
+        "click",
+        () => {
+            document.getElementById("lightbox").style.display = "none";
+        }
+    );
+
+document.getElementById("lightbox").addEventListener(
+    "click",
+    function(e) {
+        if (e.target === this) {
+            this.style.display = "none";
+        }
+    }
+);
+
+
+
     const phoneSecret = document.querySelector(".phone-secret");
 
     if (
@@ -1501,6 +1896,19 @@
     }
 
     </script>
+
+<div id="lightbox"
+     class="lightbox"
+     onclick="this.style.display='none'">
+
+    <span class="close-lightbox">&times;</span>
+
+    <img id="lightbox-img"
+         onclick="event.stopPropagation()">
+
+    <p id="lightbox-caption"></p>
+
+</div>
 
     
 
