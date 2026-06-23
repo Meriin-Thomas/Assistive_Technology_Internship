@@ -546,9 +546,9 @@ footer{
 .emg-pulse {
     position: fixed;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10000;
 
-    color: #14b8a6; /* teal */
+    color: #12ceb8; /* teal */
 
     font-family: monospace;
     font-weight: bold;

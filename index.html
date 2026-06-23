@@ -1815,88 +1815,7 @@
 
     </audio>
 
-    <script>
-
-    function openImage(img) {
-
-        document.getElementById("lightbox").style.display = "flex";
-
-        document.getElementById("lightbox-img").src = img.src;
-
-        document.getElementById("lightbox-caption").textContent =
-            img.alt;
-    }
-
-    document.querySelector(".close-lightbox").addEventListener(
-        "click",
-        () => {
-            document.getElementById("lightbox").style.display = "none";
-        }
-    );
-
-document.getElementById("lightbox").addEventListener(
-    "click",
-    function(e) {
-        if (e.target === this) {
-            this.style.display = "none";
-        }
-    }
-);
-
-
-
-    const phoneSecret = document.querySelector(".phone-secret");
-
-    if (
-        phoneSecret &&
-        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-    ) {
-        phoneSecret.style.display = "block";
-    }
-
-    document.addEventListener("click", (e) => {
-
-        const pulse = document.createElement("div");
-
-        pulse.classList.add("emg-pulse");
-
-        const waves = [
-            "__/\\__",
-            "_/\\/\\_",
-            "__/\\___/\\__",
-            "_/\\/\\/\\_"
-        ];
-
-        pulse.textContent =
-            waves[Math.floor(Math.random() * waves.length)];
-
-        pulse.style.left = e.clientX + "px";
-        pulse.style.top = e.clientY + "px";
-
-        document.body.appendChild(pulse);
-
-        setTimeout(() => {
-            pulse.remove();
-        }, 600);
-
-    });
-
-    const endText = document.getElementById("end-message");
-    const sound = document.getElementById("footer-sound");
-
-    if (endText && sound) {
-
-        endText.addEventListener("click", () => {
-
-            sound.currentTime = 0;
-            sound.play();
-
-        });
-
-    }
-
-    </script>
-
+<!--
 <div id="lightbox"
      class="lightbox"
      onclick="this.style.display='none'">
@@ -1907,10 +1826,117 @@ document.getElementById("lightbox").addEventListener(
          onclick="event.stopPropagation()">
 
     <p id="lightbox-caption"></p>
-
 </div>
+-->
+<script>
 
-    
+function openImage(img) {
+
+    document.getElementById("lightbox").style.display = "flex";
+
+    document.getElementById("lightbox-img").src = img.src;
+
+    document.getElementById("lightbox-caption").textContent =
+        img.alt;
+}
+
+/* ---------- LIGHTBOX ---------- */
+/*
+const closeBtn = document.querySelector(".close-lightbox");
+
+if (closeBtn) {
+
+    closeBtn.addEventListener("click", () => {
+
+        document.getElementById("lightbox").style.display =
+            "none";
+
+    });
+
+}
+
+const lightbox = document.getElementById("lightbox");
+
+if (lightbox) {
+
+    lightbox.addEventListener("click", function(e) {
+
+        if (e.target === this) {
+
+            this.style.display = "none";
+
+        }
+
+    });
+
+}
+
+*/
+
+/* ---------- PHONE MESSAGE ---------- */
+
+const phoneSecret = document.querySelector(".phone-secret");
+
+if (
+    phoneSecret &&
+    /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+) {
+
+    phoneSecret.style.display = "block";
+
+}
+
+/* ---------- EMG CLICK EFFECT ---------- */
+
+document.addEventListener("pointerdown", (e) => {
+
+    const pulse = document.createElement("div");
+
+    pulse.classList.add("emg-pulse");
+
+    const waves = [
+        "__/\\__",
+        "_/\\/\\_",
+        "__/\\___/\\__",
+        "_/\\/\\/\\_"
+    ];
+
+    pulse.textContent =
+        waves[Math.floor(Math.random() * waves.length)];
+
+    pulse.style.left = e.clientX + "px";
+
+    pulse.style.top = e.clientY + "px";
+
+    document.body.appendChild(pulse);
+
+    setTimeout(() => {
+
+        pulse.remove();
+
+    }, 600);
+
+});
+
+/* ---------- FOOTER SOUND ---------- */
+
+const endText = document.getElementById("end-message");
+
+const sound = document.getElementById("footer-sound");
+
+if (endText && sound) {
+
+    endText.addEventListener("click", () => {
+
+        sound.currentTime = 0;
+
+        sound.play();
+
+    });
+
+}
+
+</script>  
 
 </body>
 
